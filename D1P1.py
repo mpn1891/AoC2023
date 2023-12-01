@@ -1,6 +1,4 @@
-
 def main():
-
     array = []
     temp_nums = []
     numbers = []
@@ -20,17 +18,16 @@ def main():
                 temp_nums.append(char)
         print(temp_nums)
         temp_first = temp_nums[0]
-        temp_last = temp_nums[len(temp_nums)-1]
+        temp_last = temp_nums[len(temp_nums) - 1]
         temp_string = temp_first + temp_last
         number = int(temp_string)
 
         numbers.append(number)
-    sum = 0
+    answer = 0
     for x in numbers:
-        sum += x
+        answer += x
+    print(answer)
 
-    print(numbers)
-    print(sum)
 
 if __name__ == "__main__":
     main()
