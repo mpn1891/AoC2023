@@ -8,8 +8,6 @@ def main():
         for val in f.read().splitlines():
             array.append(val)
 
-    # print(array)
-
     for s in array:
         temp_nums.clear()
         for char in s:
