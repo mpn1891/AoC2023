@@ -41,7 +41,7 @@ def main():
                 counter += 1
         if counter > 0:
             for y in range(1, counter+1):
-                # This takes into account how many cards we already have that will do this, hence the multiply
+                # This takes into account how many cards we already have that will do this
                 num_cards[cur_card+y] += num_cards[cur_card]
 
     p2_ans = 0
