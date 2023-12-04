@@ -20,12 +20,7 @@ def main():
     for cur_card, line in enumerate(array):
         winning = defaultdict(list)
         nums = defaultdict(list)
-        temp = line.split(' ')
-
-        # removes the '' element from numbers that only have 1 digit in input
-        for i, element in enumerate(temp):
-            if element == '':
-                temp.pop(i)
+        temp = line.split()
 
         # Sets the starting points for winning and normal numbers
         win_start = 2
