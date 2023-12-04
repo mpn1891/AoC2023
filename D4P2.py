@@ -15,10 +15,9 @@ def main():
     for x in array:
         num_cards.append(1)
 
-    # tracker for which card we are currently looking at
-    cur_card = 0
     # Parse every line individually. Each time creating a new dictionary lookup for the winning and normal nums
-    for line in array:
+    # Added enumerate to track which card we are on for the bottom math
+    for cur_card, line in enumerate(array):
         winning = defaultdict(list)
         nums = defaultdict(list)
         temp = line.split(' ')
@@ -49,8 +48,6 @@ def main():
             for y in range(1, counter+1):
                 # This takes into account how many cards we already have that will do this, hence the multiply
                 num_cards[cur_card+y] += 1*num_cards[cur_card]
-        # increments to next card for knowing where we are in the card array
-        cur_card += 1
 
     p2_ans = 0
     for count in num_cards:
