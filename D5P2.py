@@ -24,13 +24,14 @@ def main():
             a, b = line.split(':')
             temp = b.split()
             for x in range(0, len(temp), 2):
+                # WHY DO I NOT NEED -1??????
                 z = int(temp[x]) + int(temp[x + 1])
                 seed_ranges.append([temp[x], z])
         elif line == '':
             blanks.append(int(i))
 
     blanks.append(int(len(array)))
-    # blanks should represent start and stops of maps relatively anyway
+    # blanks should represent start - 2 and stops of maps relatively
     for j in range(blanks[0]+2, blanks[1]):
         seed_to_soil.append(array[j].split())
     for j in range(blanks[1]+2, blanks[2]):
@@ -47,7 +48,6 @@ def main():
         humidity_to_location.append(array[j].split())
 
     seed_ranges = [[int(element) for element in row] for row in seed_ranges]
-    print(seed_ranges)
     seed_to_soil = [[int(element) for element in row] for row in seed_to_soil]
     soil_to_fertilizer = [[int(element) for element in row] for row in soil_to_fertilizer]
     fertilizer_to_water = [[int(element) for element in row] for row in fertilizer_to_water]
@@ -67,12 +67,12 @@ def main():
     print(min(temp_ranges)[0])
 
 
-
 def translate(ranges, loc_map) -> list:
     affected = []
     map_info = []
 
     for dest, src, rng in loc_map:
+        # WHY DO I NOT NEED -1??????
         map_info.append([int(src), int(src) + int(rng), dest])
 
     for src_st, src_ed, destination in map_info:
@@ -80,12 +80,10 @@ def translate(ranges, loc_map) -> list:
 
         while ranges:
             seed_st, seed_ed = ranges.pop()
-            print(seed_st, seed_ed)
 
             before = [seed_st, min(seed_ed, src_st)]
             inter = [max(seed_st, src_st), min(src_ed, seed_ed)]
             after = [max(seed_st, src_ed), seed_ed]
-            print(before,inter,after)
 
             if before[1] > before[0]:
                 not_affected.append(before)
