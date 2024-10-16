@@ -1,4 +1,6 @@
-from enum import Enum
+
+
+import time
 
 card_dict = {
     'A': 14,
@@ -23,24 +25,23 @@ def count_repeat(numbers):
     hand_type = 0
     pair_count = 0
     j_count = 0
-    for i in range(len(numbers)):
+    for i in range(5):
         count.append([1, card_dict.get(numbers[i])])
         if card_dict.get(numbers[i]) == 1:
             j_count += 1
-        for j in range(len(numbers)):
+        for j in range(5):
             if i != j and numbers[i] == numbers[j]:
                 count[i][0] += 1
-    print(count)
-    print(j_count)
+
     # Remove duplicates based on card ranks
     unique_count = []
     for c in count:
-        print(c)
+
         if c not in unique_count and c[1] != 1:
             unique_count.append(c)
 
     # Determine hand type based on unique_count
-    print(unique_count)
+
     for c in unique_count:
         if hand_type < c[0]:
             hand_type = c[0]
@@ -63,7 +64,7 @@ def bubble_sort(lst):
         # Last i elements are already sorted, so reduce the range
         for j in range(0, lst_len - i - 1):
             # Swap if the element found is greater than the next element
-            # print(lst[j][1], lst[j+1][1])
+
             if lst[j][1] < lst[j + 1][1]:
                 lst[j], lst[j + 1] = lst[j + 1], lst[j]
                 swapped = True
@@ -89,24 +90,22 @@ def main():
             array.append([hand, bet])
 
     array_ranked_hands = []
-    for i in range(0, len(array)):
+    num_hands = len(array)
+    for i in range(0, num_hands):
         array_ranked_hands.append([i, count_repeat(array[i][0])])
-        print(array_ranked_hands[i])
+
     array_ranked_hands.sort(key=lambda x: x[1], reverse=True)
 
     bubble_sort(array_ranked_hands)
 
-    print(array_ranked_hands)
-    for j in range(len(array_ranked_hands)):
-        print(array[array_ranked_hands[j][0]][0],array_ranked_hands[j][1])
     score = 0
-    total_hands = len(array_ranked_hands)
-    for l in range(0, total_hands):
-        print(score, ((total_hands - l), int(array[array_ranked_hands[l][0]][1])), array_ranked_hands[l][0])
-        score = score + ((total_hands - l) * int(array[array_ranked_hands[l][0]][1]))
+    for l in range(0, num_hands):
+        score = score + ((num_hands - l) * int(array[array_ranked_hands[l][0]][1]))
 
     print(score)
 
 
 if __name__ == "__main__":
+    st = time.time()
     main()
+    print("----%.2f----" % (time.time() - st))
